@@ -538,16 +538,13 @@ Arkan incense site · HTML
   // Product list — add more objects here to grow the catalog
   // "images" accepts one or more URLs. Old single "image" field still works.
   const PRODUCTS = [
-    {
-      id: "wax-bouquet-bw",
-      images: ["https://i.imgur.com/PLACEHOLDER.jpg"], // replace with real hosted image URL(s)
-      name: { ar: "باقة ورد شمعية فاخرة - أسود وأبيض", he: "זר פרחי שעווה יוקרתי - שחור ולבן" },
-      desc: {
-        ar: "باقة ورد فريدة مصنوعة بالكامل من الشمع الطبيعي بأيدٍ ماهرة، معروضة في مزهرية سوداء أنيقة مع شريط حريري.",
-        he: "זר פרחים ייחודי העשוי כולו משעווה טבעית בעבודת יד, מוצג באגרטל שחור אלגנטי עם סרט משי."
-      },
-      price: 150
-    }
+  {
+    id: "product-1",
+    images: ["https://i.postimg.cc/zvyQ54X3/20260704-161737.jpg", "https://i.postimg.cc/wM1rHnT7/20260704-161804.jpg", "https://i.postimg.cc/mkPnRK2P/20260704-161745.jpg"],
+    name: { ar: "باقة ورد شمعية فاخرة", he: "זר פרחים משעווה יוקרתי" },
+    desc: { ar: "باقة ورد مصنوعة يدويًا من الشمع بتصميم أنيق داخل علبة هدايا فاخرة، مثالية للهدايا، المناسبات، وتزيين المنزل. تضيف لمسة راقية تدوم طويلًا.", he: "זר פרחים יוקרתי בעבודת יד משעווה, מעוצב בקופסת מתנה אלגנטית. מתאים לימי הולדת, ימי נישואין, חנוכת בית ומתנה מיוחדת שנשארת לאורך זמן." },
+    price: 150
+  }
   ];
  
   function renderProducts(lang) {
