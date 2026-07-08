@@ -1,4 +1,6 @@
 
+
+Arkan incense site · HTML
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -18,25 +20,25 @@
     --cream-dim: #b8ab8c;
     --line: rgba(201,162,39,0.22);
   }
-
+ 
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
+ 
   html { scroll-behavior: smooth; }
-
+ 
   body {
     background: var(--bg);
     color: var(--cream);
     min-height: 100vh;
     overflow-x: hidden;
   }
-
+ 
   body.lang-ar { font-family: 'Cairo', sans-serif; }
   body.lang-he { font-family: 'Assistant', sans-serif; direction: rtl; }
-
+ 
   .ar-only, .he-only { display: none; }
   body.lang-ar .ar-only { display: inherit; }
   body.lang-he .he-only { display: inherit; }
-
+ 
   h1, h2, h3, .display {
     font-weight: 700;
   }
@@ -46,7 +48,7 @@
   body.lang-he h1, body.lang-he h2, body.lang-he .display {
     font-family: 'Frank Ruhl Libre', serif;
   }
-
+ 
   /* Ambient texture: soft radial embers */
   .ember-field {
     position: fixed;
@@ -57,7 +59,7 @@
       radial-gradient(ellipse 600px 400px at 15% 20%, rgba(201,162,39,0.07), transparent 60%),
       radial-gradient(ellipse 500px 500px at 85% 70%, rgba(201,162,39,0.05), transparent 60%);
   }
-
+ 
   header {
     position: sticky;
     top: 0;
@@ -92,7 +94,7 @@
     transition: color 0.25s;
   }
   nav.crumbs a:hover { color: var(--gold-light); }
-
+ 
   .lang-toggle {
     display: flex;
     border: 1px solid var(--gold-dim);
@@ -114,7 +116,7 @@
     color: #14120f;
     font-weight: 700;
   }
-
+ 
   /* HERO */
   .hero {
     position: relative;
@@ -147,7 +149,7 @@
     margin: 0 auto;
     line-height: 1.9;
   }
-
+ 
   .divider {
     width: 140px;
     height: 1px;
@@ -166,7 +168,7 @@
     padding: 0 10px;
     font-size: 0.7rem;
   }
-
+ 
   /* CATALOG */
   .catalog {
     position: relative;
@@ -183,13 +185,13 @@
     font-size: 2rem;
     color: var(--cream);
   }
-
+ 
   .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 32px;
   }
-
+ 
   .card {
     background: var(--bg-panel);
     border: 1px solid var(--line);
@@ -208,15 +210,62 @@
     aspect-ratio: 4/5;
     overflow: hidden;
     background: #0e0d0b;
+    position: relative;
   }
   .card .img-wrap img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.6s ease;
+    transition: transform 0.6s ease, opacity 0.3s ease;
   }
   .card:hover .img-wrap img { transform: scale(1.05); }
-
+ 
+  .gallery-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(20,18,15,0.55);
+    color: var(--gold-light);
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.1rem;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.25s, background 0.2s;
+  }
+  .card:hover .gallery-arrow { opacity: 1; }
+  .gallery-arrow:hover { background: rgba(20,18,15,0.85); }
+  .gallery-arrow.prev { inset-inline-start: 10px; }
+  .gallery-arrow.next { inset-inline-end: 10px; }
+ 
+  .gallery-dots {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    z-index: 2;
+  }
+  .gallery-dots span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(244,236,220,0.4);
+    transition: background 0.2s, transform 0.2s;
+  }
+  .gallery-dots span.active {
+    background: var(--gold-light);
+    transform: scale(1.3);
+  }
+ 
   .card-body {
     padding: 22px 22px 24px;
     display: flex;
@@ -246,7 +295,7 @@
     color: var(--cream);
   }
   .price .cur { color: var(--gold); font-size: 0.9rem; }
-
+ 
   .order-btn {
     display: flex;
     align-items: center;
@@ -268,7 +317,7 @@
   .order-btn:hover { background: var(--gold-light); }
   .order-btn:active { transform: scale(0.98); }
   .order-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
-
+ 
   /* Empty state for future products */
   .placeholder-card {
     border: 1px dashed var(--line);
@@ -283,7 +332,7 @@
     padding: 20px;
     border-radius: 6px;
   }
-
+ 
   footer {
     position: relative;
     z-index: 1;
@@ -299,7 +348,7 @@
     margin-bottom: 8px;
     display: block;
   }
-
+ 
   /* Floating WhatsApp button */
   .float-whatsapp {
     position: fixed;
@@ -319,7 +368,7 @@
   }
   .float-whatsapp:hover { transform: scale(1.08); }
   .float-whatsapp svg { width: 30px; height: 30px; }
-
+ 
   @media (max-width: 640px) {
     .header-inner { flex-wrap: wrap; }
     nav.crumbs { order: 3; width: 100%; justify-content: center; gap: 20px; }
@@ -328,9 +377,9 @@
 </style>
 </head>
 <body class="lang-ar">
-
+ 
 <div class="ember-field"></div>
-
+ 
 <header>
   <div class="header-inner">
     <div class="brand">Arkan Incense</div>
@@ -346,7 +395,7 @@
     </div>
   </div>
 </header>
-
+ 
 <section class="hero">
   <span class="eyebrow ar-only">حيث يتجسد العطر فنًا</span>
   <span class="eyebrow he-only">היכן שהבושם הופך לאמנות</span>
@@ -358,20 +407,20 @@
   <p class="sub he-only">מתנות ונגיעות יוקרתיות שמעניקות לביתכם חום ואלגנטיות שנשארת. כל פריט נוצר ביד בקפידה רבה.</p>
   <div class="divider"></div>
 </section>
-
+ 
 <section class="catalog" id="catalog">
   <div class="catalog-head">
     <h2 class="ar-only">مجموعتنا</h2>
     <h2 class="he-only">הקולקציה שלנו</h2>
   </div>
-
+ 
   <div class="grid" id="product-grid"></div>
 </section>
-
+ 
 <a class="float-whatsapp" id="float-wa" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">
   <svg viewBox="0 0 32 32" fill="white"><path d="M16.004 3C9.377 3 4 8.373 4 15c0 2.34.646 4.53 1.77 6.4L4 29l7.79-1.74A11.94 11.94 0 0 0 16.004 27C22.63 27 28 21.627 28 15S22.63 3 16.004 3zm0 21.8c-1.98 0-3.83-.55-5.41-1.5l-.39-.23-4.62 1.03 1.05-4.5-.25-.4A9.77 9.77 0 0 1 5.2 15c0-5.96 4.85-10.8 10.8-10.8S26.8 9.04 26.8 15 21.96 24.8 16.004 24.8zm5.9-8.1c-.32-.16-1.9-.94-2.2-1.04-.3-.11-.51-.16-.73.16-.21.32-.84 1.04-1.03 1.25-.19.21-.38.24-.7.08-.32-.16-1.35-.5-2.57-1.6-.95-.85-1.59-1.9-1.78-2.22-.18-.32-.02-.49.14-.65.14-.14.32-.37.48-.55.16-.19.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.73-1.76-1-2.42-.26-.63-.53-.54-.73-.55h-.62c-.21 0-.56.08-.85.4-.29.32-1.12 1.1-1.12 2.67 0 1.57 1.15 3.09 1.31 3.3.16.21 2.26 3.45 5.47 4.84.76.33 1.36.53 1.82.67.77.24 1.46.21 2.02.13.62-.09 1.9-.78 2.16-1.53.27-.75.27-1.39.19-1.53-.08-.13-.29-.21-.61-.37z"/></svg>
 </a>
-
+ 
 <section class="catalog" id="contact" style="text-align:center; padding-top:20px;">
   <div class="catalog-head">
     <h2 class="ar-only">تواصل معنا</h2>
@@ -385,23 +434,24 @@
     <span class="he-only">שלח לנו הודעה בוואטסאפ</span>
   </a>
 </section>
-
+ 
 <footer>
   <span class="foot-brand">Arkan Incense</span>
   <div class="ar-only">© 2026 أركان للبخور. جميع الحقوق محفوظة.</div>
   <div class="he-only">© 2026 Arkan Incense. כל הזכויות שמורות.</div>
 </footer>
-
+ 
 <script>
   // ===== CONFIGURE HERE =====
   const WHATSAPP_NUMBER = "972098330332"; // no + or dashes
   const CURRENCY = { ar: "شيكل", he: "₪" };
-
+ 
   // Product list — add more objects here to grow the catalog
+  // "images" accepts one or more URLs. Old single "image" field still works.
   const PRODUCTS = [
     {
       id: "wax-bouquet-bw",
-      image: "https://i.imgur.com/PLACEHOLDER.jpg", // replace with real hosted image URL
+      images: ["https://i.imgur.com/PLACEHOLDER.jpg"], // replace with real hosted image URL(s)
       name: { ar: "باقة ورد شمعية فاخرة - أسود وأبيض", he: "זר פרחי שעווה יוקרתי - שחור ולבן" },
       desc: {
         ar: "باقة ورد فريدة مصنوعة بالكامل من الشمع الطبيعي بأيدٍ ماهرة، معروضة في مزهرية سوداء أنيقة مع شريط حريري.",
@@ -410,11 +460,12 @@
       price: 150
     }
   ];
-
+ 
   function renderProducts(lang) {
     const grid = document.getElementById('product-grid');
     grid.innerHTML = '';
-    PRODUCTS.forEach(p => {
+    PRODUCTS.forEach((p, pIndex) => {
+      const images = p.images && p.images.length ? p.images : (p.image ? [p.image] : []);
       const card = document.createElement('div');
       card.className = 'card';
       const message = encodeURIComponent(
@@ -423,8 +474,18 @@
           : `שלום, אני מעוניין/ת להזמין: ${p.name.he} — מחיר: ${p.price} ${CURRENCY.he}`
       );
       const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
+ 
+      const arrowsHtml = images.length > 1 ? `
+        <button class="gallery-arrow prev" onclick="shiftImage(event, ${pIndex}, -1)" aria-label="previous">‹</button>
+        <button class="gallery-arrow next" onclick="shiftImage(event, ${pIndex}, 1)" aria-label="next">›</button>
+        <div class="gallery-dots">${images.map((_, i) => `<span class="${i === 0 ? 'active' : ''}"></span>`).join('')}</div>
+      ` : '';
+ 
       card.innerHTML = `
-        <div class="img-wrap"><img src="${p.image}" alt="${p.name[lang]}" onerror="this.src='https://placehold.co/500x625/1c1916/c9a227?text=Arkan+Incense'"></div>
+        <div class="img-wrap" id="imgwrap-${pIndex}">
+          <img id="img-${pIndex}" src="${images[0] || ''}" alt="${p.name[lang]}" onerror="this.src='https://placehold.co/500x625/1c1916/c9a227?text=Arkan+Incense'">
+          ${arrowsHtml}
+        </div>
         <div class="card-body">
           <h3>${p.name[lang]}</h3>
           <p class="desc">${p.desc[lang]}</p>
@@ -437,16 +498,35 @@
           </a>
         </div>
       `;
+      card._images = images;
+      card._current = 0;
       grid.appendChild(card);
     });
-
+ 
     // Placeholder card hinting more products are coming
     const ph = document.createElement('div');
     ph.className = 'placeholder-card';
     ph.textContent = lang === 'ar' ? 'قريبًا... منتجات جديدة' : 'בקרוב... מוצרים נוספים';
     grid.appendChild(ph);
   }
-
+ 
+  function shiftImage(evt, pIndex, dir) {
+    evt.preventDefault();
+    evt.stopPropagation();
+    const card = document.getElementById('imgwrap-' + pIndex).closest('.card');
+    const images = card._images;
+    if (!images || images.length < 2) return;
+    card._current = (card._current + dir + images.length) % images.length;
+    const img = document.getElementById('img-' + pIndex);
+    img.style.opacity = 0;
+    setTimeout(() => {
+      img.src = images[card._current];
+      img.style.opacity = 1;
+    }, 150);
+    const dots = card.querySelectorAll('.gallery-dots span');
+    dots.forEach((d, i) => d.classList.toggle('active', i === card._current));
+  }
+ 
   function setLang(lang) {
     document.body.className = 'lang-' + lang;
     document.documentElement.lang = lang;
@@ -457,11 +537,12 @@
     document.getElementById('contact-wa-btn').href = `https://wa.me/${WHATSAPP_NUMBER}`;
     renderProducts(lang);
   }
-
+ 
   // Init
   const savedLang = 'ar'; // default per brief
   setLang(savedLang);
 </script>
-
+ 
 </body>
 </html>
+ 
