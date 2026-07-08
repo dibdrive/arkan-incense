@@ -216,9 +216,74 @@ Arkan incense site · HTML
     width: 100%;
     height: 100%;
     object-fit: cover;
+    cursor: zoom-in;
     transition: transform 0.6s ease, opacity 0.3s ease;
   }
   .card:hover .img-wrap img { transform: scale(1.05); }
+ 
+  /* Lightbox */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: rgba(10,9,7,0.94);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img {
+    max-width: 90vw;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  }
+  .lightbox-close {
+    position: absolute;
+    top: 24px;
+    inset-inline-end: 28px;
+    background: transparent;
+    border: none;
+    color: var(--cream);
+    font-size: 2rem;
+    cursor: pointer;
+    line-height: 1;
+    z-index: 3;
+  }
+  .lightbox-close:hover { color: var(--gold-light); }
+  .lightbox-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.08);
+    border: none;
+    color: var(--cream);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    font-size: 1.6rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    transition: background 0.2s;
+  }
+  .lightbox-arrow:hover { background: rgba(255,255,255,0.18); }
+  .lightbox-arrow.prev { inset-inline-start: 20px; }
+  .lightbox-arrow.next { inset-inline-end: 20px; }
+  .lightbox-counter {
+    position: absolute;
+    bottom: 24px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: var(--cream-dim);
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+  }
  
   .gallery-arrow {
     position: absolute;
@@ -417,6 +482,14 @@ Arkan incense site · HTML
   <div class="grid" id="product-grid"></div>
 </section>
  
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()" aria-label="close">✕</button>
+  <button class="lightbox-arrow prev" onclick="lightboxShift(-1)" aria-label="previous">‹</button>
+  <img id="lightbox-img" src="" alt="">
+  <button class="lightbox-arrow next" onclick="lightboxShift(1)" aria-label="next">›</button>
+  <div class="lightbox-counter" id="lightbox-counter"></div>
+</div>
+ 
 <a class="float-whatsapp" id="float-wa" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">
   <svg viewBox="0 0 32 32" fill="white"><path d="M16.004 3C9.377 3 4 8.373 4 15c0 2.34.646 4.53 1.77 6.4L4 29l7.79-1.74A11.94 11.94 0 0 0 16.004 27C22.63 27 28 21.627 28 15S22.63 3 16.004 3zm0 21.8c-1.98 0-3.83-.55-5.41-1.5l-.39-.23-4.62 1.03 1.05-4.5-.25-.4A9.77 9.77 0 0 1 5.2 15c0-5.96 4.85-10.8 10.8-10.8S26.8 9.04 26.8 15 21.96 24.8 16.004 24.8zm5.9-8.1c-.32-.16-1.9-.94-2.2-1.04-.3-.11-.51-.16-.73.16-.21.32-.84 1.04-1.03 1.25-.19.21-.38.24-.7.08-.32-.16-1.35-.5-2.57-1.6-.95-.85-1.59-1.9-1.78-2.22-.18-.32-.02-.49.14-.65.14-.14.32-.37.48-.55.16-.19.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.73-1.76-1-2.42-.26-.63-.53-.54-.73-.55h-.62c-.21 0-.56.08-.85.4-.29.32-1.12 1.1-1.12 2.67 0 1.57 1.15 3.09 1.31 3.3.16.21 2.26 3.45 5.47 4.84.76.33 1.36.53 1.82.67.77.24 1.46.21 2.02.13.62-.09 1.9-.78 2.16-1.53.27-.75.27-1.39.19-1.53-.08-.13-.29-.21-.61-.37z"/></svg>
 </a>
@@ -449,13 +522,16 @@ Arkan incense site · HTML
   // Product list — add more objects here to grow the catalog
   // "images" accepts one or more URLs. Old single "image" field still works.
   const PRODUCTS = [
- {
-    id: "product-1",
-    images: ["https://i.postimg.cc/zvyQ54X3/20260704-161737.jpg", "https://i.postimg.cc/wM1rHnT7/20260704-161804.jpg", "https://i.postimg.cc/mkPnRK2P/20260704-161745.jpg"],
-    name: { ar: "باقة ورد شمعية فاخرة", he: "זר פרחים משעווה יוקרתי" },
-    desc: { ar: "باقة ورد مصنوعة يدويًا من الشمع بتصميم أنيق داخل علبة هدايا فاخرة، مثالية للهدايا، المناسبات، وتزيين المنزل. تضيف لمسة راقية تدوم طويلًا.", he: "זר פרחים יוקרתי בעבודת יד משעווה, מעוצב בקופסת מתנה אלגנטית. מתאים לימי הולדת, ימי נישואין, חנוכת בית ומתנה מיוחדת שנשארת לאורך זמן." },
-    price: 150
-  }
+    {
+      id: "wax-bouquet-bw",
+      images: ["https://i.imgur.com/PLACEHOLDER.jpg"], // replace with real hosted image URL(s)
+      name: { ar: "باقة ورد شمعية فاخرة - أسود وأبيض", he: "זר פרחי שעווה יוקרתי - שחור ולבן" },
+      desc: {
+        ar: "باقة ورد فريدة مصنوعة بالكامل من الشمع الطبيعي بأيدٍ ماهرة، معروضة في مزهرية سوداء أنيقة مع شريط حريري.",
+        he: "זר פרחים ייחודי העשוי כולו משעווה טבעית בעבודת יד, מוצג באגרטל שחור אלגנטי עם סרט משי."
+      },
+      price: 150
+    }
   ];
  
   function renderProducts(lang) {
@@ -480,7 +556,7 @@ Arkan incense site · HTML
  
       card.innerHTML = `
         <div class="img-wrap" id="imgwrap-${pIndex}">
-          <img id="img-${pIndex}" src="${images[0] || ''}" alt="${p.name[lang]}" onerror="this.src='https://placehold.co/500x625/1c1916/c9a227?text=Arkan+Incense'">
+          <img id="img-${pIndex}" src="${images[0] || ''}" alt="${p.name[lang]}" onclick="openLightbox(${pIndex})" onerror="this.src='https://placehold.co/500x625/1c1916/c9a227?text=Arkan+Incense'">
           ${arrowsHtml}
         </div>
         <div class="card-body">
@@ -523,6 +599,46 @@ Arkan incense site · HTML
     const dots = card.querySelectorAll('.gallery-dots span');
     dots.forEach((d, i) => d.classList.toggle('active', i === card._current));
   }
+ 
+  // ===== Lightbox =====
+  let lightboxImages = [];
+  let lightboxIndex = 0;
+ 
+  function openLightbox(pIndex) {
+    const card = document.getElementById('imgwrap-' + pIndex).closest('.card');
+    lightboxImages = card._images;
+    lightboxIndex = card._current || 0;
+    updateLightbox();
+    document.getElementById('lightbox').classList.add('open');
+  }
+ 
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+  }
+ 
+  function lightboxShift(dir) {
+    lightboxIndex = (lightboxIndex + dir + lightboxImages.length) % lightboxImages.length;
+    updateLightbox();
+  }
+ 
+  function updateLightbox() {
+    document.getElementById('lightbox-img').src = lightboxImages[lightboxIndex];
+    const counter = document.getElementById('lightbox-counter');
+    counter.textContent = lightboxImages.length > 1 ? `${lightboxIndex + 1} / ${lightboxImages.length}` : '';
+    document.querySelectorAll('.lightbox-arrow').forEach(btn => {
+      btn.style.display = lightboxImages.length > 1 ? 'flex' : 'none';
+    });
+  }
+ 
+  document.getElementById('lightbox').addEventListener('click', (e) => {
+    if (e.target.id === 'lightbox') closeLightbox();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (!document.getElementById('lightbox').classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') lightboxShift(-1);
+    if (e.key === 'ArrowRight') lightboxShift(1);
+  });
  
   function setLang(lang) {
     document.body.className = 'lang-' + lang;
