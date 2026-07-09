@@ -17,25 +17,25 @@
     --cream-dim: #b8ab8c;
     --line: rgba(201,162,39,0.22);
   }
- 
+
   * { box-sizing: border-box; margin: 0; padding: 0; }
- 
+
   html { scroll-behavior: smooth; }
- 
+
   body {
     background: var(--bg);
     color: var(--cream);
     min-height: 100vh;
     overflow-x: hidden;
   }
- 
+
   body.lang-ar { font-family: 'Cairo', sans-serif; }
   body.lang-he { font-family: 'Assistant', sans-serif; direction: rtl; }
- 
+
   .ar-only, .he-only { display: none; }
   body.lang-ar .ar-only { display: inherit; }
   body.lang-he .he-only { display: inherit; }
- 
+
   h1, h2, h3, .display {
     font-weight: 700;
   }
@@ -45,7 +45,7 @@
   body.lang-he h1, body.lang-he h2, body.lang-he .display {
     font-family: 'Frank Ruhl Libre', serif;
   }
- 
+
   /* Ambient texture: soft radial embers */
   .ember-field {
     position: fixed;
@@ -56,7 +56,7 @@
       radial-gradient(ellipse 600px 400px at 15% 20%, rgba(201,162,39,0.07), transparent 60%),
       radial-gradient(ellipse 500px 500px at 85% 70%, rgba(201,162,39,0.05), transparent 60%);
   }
- 
+
   header {
     position: sticky;
     top: 0;
@@ -91,7 +91,7 @@
     transition: color 0.25s;
   }
   nav.crumbs a:hover { color: var(--gold-light); }
- 
+
   .site-share-btn {
     display: flex;
     align-items: center;
@@ -109,7 +109,7 @@
   .site-share-btn:hover { background: rgba(201,162,39,0.12); border-color: var(--gold); }
   .site-share-btn.copied { border-color: #4a8a5c; color: #6fbb84; }
   .site-share-btn svg { width: 17px; height: 17px; }
- 
+
   .lang-toggle {
     display: flex;
     border: 1px solid var(--gold-dim);
@@ -131,7 +131,7 @@
     color: #14120f;
     font-weight: 700;
   }
- 
+
   /* HERO */
   .hero {
     position: relative;
@@ -164,7 +164,7 @@
     margin: 0 auto;
     line-height: 1.9;
   }
- 
+
   .divider {
     width: 140px;
     height: 1px;
@@ -183,7 +183,7 @@
     padding: 0 10px;
     font-size: 0.7rem;
   }
- 
+
   /* CATALOG */
   .catalog {
     position: relative;
@@ -200,13 +200,13 @@
     font-size: 2rem;
     color: var(--cream);
   }
- 
+
   .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 32px;
   }
- 
+
   .card {
     background: var(--bg-panel);
     border: 1px solid var(--line);
@@ -235,7 +235,7 @@
     transition: transform 0.6s ease, opacity 0.3s ease;
   }
   .card:hover .img-wrap img { transform: scale(1.05); }
- 
+
   /* Lightbox */
   .lightbox {
     position: fixed;
@@ -299,7 +299,7 @@
     font-size: 0.85rem;
     letter-spacing: 1px;
   }
- 
+
   .gallery-arrow {
     position: absolute;
     top: 50%;
@@ -323,7 +323,7 @@
   .gallery-arrow:hover { background: rgba(20,18,15,0.85); }
   .gallery-arrow.prev { inset-inline-start: 10px; }
   .gallery-arrow.next { inset-inline-end: 10px; }
- 
+
   .product-number {
     position: absolute;
     top: 10px;
@@ -341,7 +341,7 @@
     font-size: 0.85rem;
     z-index: 2;
   }
- 
+
   .gallery-dots {
     position: absolute;
     bottom: 10px;
@@ -363,7 +363,7 @@
     background: var(--gold-light);
     transform: scale(1.3);
   }
- 
+
   .card-body {
     padding: 22px 22px 24px;
     display: flex;
@@ -393,7 +393,7 @@
     color: var(--cream);
   }
   .price .cur { color: var(--gold); font-size: 0.9rem; }
- 
+
   .order-btn {
     display: flex;
     align-items: center;
@@ -415,7 +415,7 @@
   .order-btn:hover { background: var(--gold-light); }
   .order-btn:active { transform: scale(0.98); }
   .order-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
- 
+
   .card-actions {
     display: flex;
     gap: 8px;
@@ -438,13 +438,13 @@
   .share-btn:hover { background: rgba(201,162,39,0.12); border-color: var(--gold); }
   .share-btn svg { width: 18px; height: 18px; }
   .share-btn.copied { border-color: #4a8a5c; color: #6fbb84; }
- 
+
   .card.highlight { animation: highlightPulse 1.8s ease-out; }
   @keyframes highlightPulse {
     0% { box-shadow: 0 0 0 3px var(--gold); }
     100% { box-shadow: 0 0 0 0px transparent; }
   }
- 
+
   /* Empty state for future products */
   .placeholder-card {
     border: 1px dashed var(--line);
@@ -459,7 +459,7 @@
     padding: 20px;
     border-radius: 6px;
   }
- 
+
   .reviews-section {
     position: relative;
     z-index: 1;
@@ -501,7 +501,7 @@
     font-weight: 400;
     font-size: 0.8rem;
   }
- 
+
   footer {
     position: relative;
     z-index: 1;
@@ -517,7 +517,7 @@
     margin-bottom: 8px;
     display: block;
   }
- 
+
   /* Floating WhatsApp button */
   .float-whatsapp {
     position: fixed;
@@ -537,7 +537,7 @@
   }
   .float-whatsapp:hover { transform: scale(1.08); }
   .float-whatsapp svg { width: 30px; height: 30px; }
- 
+
   @media (max-width: 640px) {
     .header-inner { flex-wrap: wrap; }
     nav.crumbs { order: 3; width: 100%; justify-content: center; gap: 20px; }
@@ -546,9 +546,9 @@
 </style>
 </head>
 <body class="lang-ar">
- 
+
 <div class="ember-field"></div>
- 
+
 <header>
   <div class="header-inner">
     <div class="brand">Arkan Incense</div>
@@ -567,7 +567,7 @@
     </button>
   </div>
 </header>
- 
+
 <section class="hero">
   <span class="eyebrow ar-only">حيث يتجسد العطر فنًا</span>
   <span class="eyebrow he-only">היכן שהבושם הופך לאמנות</span>
@@ -579,16 +579,16 @@
   <p class="sub he-only">מתנות ונגיעות יוקרתיות שמעניקות לביתכם חום ואלגנטיות שנשארת. כל פריט נוצר ביד בקפידה רבה.</p>
   <div class="divider"></div>
 </section>
- 
+
 <section class="catalog" id="catalog">
   <div class="catalog-head">
     <h2 class="ar-only">مجموعتنا</h2>
     <h2 class="he-only">הקולקציה שלנו</h2>
   </div>
- 
+
   <div class="grid" id="product-grid"></div>
 </section>
- 
+
 <div class="lightbox" id="lightbox">
   <button class="lightbox-close" onclick="closeLightbox()" aria-label="close">✕</button>
   <button class="lightbox-arrow prev" onclick="lightboxShift(-1)" aria-label="previous">‹</button>
@@ -596,11 +596,11 @@
   <button class="lightbox-arrow next" onclick="lightboxShift(1)" aria-label="next">›</button>
   <div class="lightbox-counter" id="lightbox-counter"></div>
 </div>
- 
+
 <a class="float-whatsapp" id="float-wa" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">
   <svg viewBox="0 0 32 32" fill="white"><path d="M16.004 3C9.377 3 4 8.373 4 15c0 2.34.646 4.53 1.77 6.4L4 29l7.79-1.74A11.94 11.94 0 0 0 16.004 27C22.63 27 28 21.627 28 15S22.63 3 16.004 3zm0 21.8c-1.98 0-3.83-.55-5.41-1.5l-.39-.23-4.62 1.03 1.05-4.5-.25-.4A9.77 9.77 0 0 1 5.2 15c0-5.96 4.85-10.8 10.8-10.8S26.8 9.04 26.8 15 21.96 24.8 16.004 24.8zm5.9-8.1c-.32-.16-1.9-.94-2.2-1.04-.3-.11-.51-.16-.73.16-.21.32-.84 1.04-1.03 1.25-.19.21-.38.24-.7.08-.32-.16-1.35-.5-2.57-1.6-.95-.85-1.59-1.9-1.78-2.22-.18-.32-.02-.49.14-.65.14-.14.32-.37.48-.55.16-.19.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.73-1.76-1-2.42-.26-.63-.53-.54-.73-.55h-.62c-.21 0-.56.08-.85.4-.29.32-1.12 1.1-1.12 2.67 0 1.57 1.15 3.09 1.31 3.3.16.21 2.26 3.45 5.47 4.84.76.33 1.36.53 1.82.67.77.24 1.46.21 2.02.13.62-.09 1.9-.78 2.16-1.53.27-.75.27-1.39.19-1.53-.08-.13-.29-.21-.61-.37z"/></svg>
 </a>
- 
+
 <section class="reviews-section" id="reviews" style="display:none;">
   <div class="catalog-head">
     <h2 class="ar-only">آراء عملائنا</h2>
@@ -608,7 +608,7 @@
   </div>
   <div class="reviews-grid" id="reviews-grid"></div>
 </section>
- 
+
 <section class="catalog" id="contact" style="text-align:center; padding-top:20px;">
   <div class="catalog-head">
     <h2 class="ar-only">تواصل معنا</h2>
@@ -622,18 +622,18 @@
     <span class="he-only">שלח לנו הודעה בוואטסאפ</span>
   </a>
 </section>
- 
+
 <footer>
   <span class="foot-brand">Arkan Incense</span>
   <div class="ar-only">© 2026 أركان للبخور. جميع الحقوق محفوظة.</div>
   <div class="he-only">© 2026 Arkan Incense. כל הזכויות שמורות.</div>
 </footer>
- 
+
 <script>
   // ===== CONFIGURE HERE =====
   const WHATSAPP_NUMBER = "972098330332"; // no + or dashes
   const CURRENCY = { ar: "شيكل", he: "₪" };
- 
+
   // Product list — add more objects here to grow the catalog
   // "images" accepts one or more URLs. Old single "image" field still works.
   const PRODUCTS = [
@@ -648,7 +648,7 @@
       price: 150
     }
   ];
- 
+
   // ===== Customer reviews =====
   // Leave empty until you have real customer feedback — the section stays hidden automatically.
   // To add a real review, copy this structure and fill in real details:
@@ -659,7 +659,7 @@
   //   productRef: { ar: "باقة ورد شمعية", he: "זר פרחי שעווה" }  // optional — which product they ordered
   // }
   const REVIEWS = [];
- 
+
   function renderProducts(lang) {
     const grid = document.getElementById('product-grid');
     grid.innerHTML = '';
@@ -675,13 +675,13 @@
           : `שלום, אני מעוניין/ת להזמין מוצר מספר ${productNumber}: ${p.name.he} — מחיר: ${p.price} ${CURRENCY.he}`
       );
       const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
- 
+
       const arrowsHtml = images.length > 1 ? `
         <button class="gallery-arrow prev" onclick="shiftImage(event, ${pIndex}, -1)" aria-label="previous">‹</button>
         <button class="gallery-arrow next" onclick="shiftImage(event, ${pIndex}, 1)" aria-label="next">›</button>
         <div class="gallery-dots">${images.map((_, i) => `<span class="${i === 0 ? 'active' : ''}"></span>`).join('')}</div>
       ` : '';
- 
+
       card.innerHTML = `
         <div class="img-wrap" id="imgwrap-${pIndex}">
           <span class="product-number">${productNumber}</span>
@@ -709,21 +709,21 @@
       card._current = 0;
       grid.appendChild(card);
     });
- 
+
     // Placeholder card hinting more products are coming
     const ph = document.createElement('div');
     ph.className = 'placeholder-card';
     ph.textContent = lang === 'ar' ? 'قريبًا... منتجات جديدة' : 'בקרוב... מוצרים נוספים';
     grid.appendChild(ph);
   }
- 
+
   function shareSite(evt) {
     const lang = document.body.className === 'lang-he' ? 'he' : 'ar';
     const url = window.location.origin + window.location.pathname;
     const text = lang === 'ar'
       ? 'اكتشفوا Arkan Incense — شموع وباقات شمعية مصنوعة يدويًا بعناية'
       : 'גלו את Arkan Incense — נרות וזרי שעווה בעבודת יד';
- 
+
     if (navigator.share) {
       navigator.share({ title: 'Arkan Incense', text, url }).catch(() => {});
     } else {
@@ -734,7 +734,7 @@
       });
     }
   }
- 
+
   function shareProduct(evt, pIndex, lang) {
     evt.preventDefault();
     const p = PRODUCTS[pIndex];
@@ -742,7 +742,7 @@
     const text = lang === 'ar'
       ? `${p.name.ar} — ${p.price} ${CURRENCY.ar} | Arkan Incense`
       : `${p.name.he} — ${p.price} ${CURRENCY.he} | Arkan Incense`;
- 
+
     if (navigator.share) {
       navigator.share({ title: 'Arkan Incense', text, url }).catch(() => {});
     } else {
@@ -753,7 +753,7 @@
       });
     }
   }
- 
+
   function scrollToHashProduct() {
     const hash = window.location.hash;
     if (hash && hash.startsWith('#product-')) {
@@ -767,7 +767,7 @@
       }
     }
   }
- 
+
   function shiftImage(evt, pIndex, dir) {
     evt.preventDefault();
     evt.stopPropagation();
@@ -784,11 +784,11 @@
     const dots = card.querySelectorAll('.gallery-dots span');
     dots.forEach((d, i) => d.classList.toggle('active', i === card._current));
   }
- 
+
   // ===== Lightbox =====
   let lightboxImages = [];
   let lightboxIndex = 0;
- 
+
   function openLightbox(pIndex) {
     const card = document.getElementById('imgwrap-' + pIndex).closest('.card');
     lightboxImages = card._images;
@@ -796,16 +796,16 @@
     updateLightbox();
     document.getElementById('lightbox').classList.add('open');
   }
- 
+
   function closeLightbox() {
     document.getElementById('lightbox').classList.remove('open');
   }
- 
+
   function lightboxShift(dir) {
     lightboxIndex = (lightboxIndex + dir + lightboxImages.length) % lightboxImages.length;
     updateLightbox();
   }
- 
+
   function updateLightbox() {
     document.getElementById('lightbox-img').src = lightboxImages[lightboxIndex];
     const counter = document.getElementById('lightbox-counter');
@@ -814,7 +814,7 @@
       btn.style.display = lightboxImages.length > 1 ? 'flex' : 'none';
     });
   }
- 
+
   document.getElementById('lightbox').addEventListener('click', (e) => {
     if (e.target.id === 'lightbox') closeLightbox();
   });
@@ -824,7 +824,7 @@
     if (e.key === 'ArrowLeft') lightboxShift(-1);
     if (e.key === 'ArrowRight') lightboxShift(1);
   });
- 
+
   function renderReviews(lang) {
     const section = document.getElementById('reviews');
     const grid = document.getElementById('reviews-grid');
@@ -841,7 +841,7 @@
       </div>
     `).join('');
   }
- 
+
   function setLang(lang) {
     document.body.className = 'lang-' + lang;
     document.documentElement.lang = lang;
@@ -853,15 +853,12 @@
     renderProducts(lang);
     renderReviews(lang);
   }
- 
+
   // Init
   const savedLang = 'ar'; // default per brief
   setLang(savedLang);
   scrollToHashProduct();
 </script>
- 
+
 </body>
 </html>
- 
-
-
