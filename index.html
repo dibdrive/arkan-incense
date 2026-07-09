@@ -92,7 +92,23 @@
   }
   nav.crumbs a:hover { color: var(--gold-light); }
  
-  .lang-toggle {
+  .site-share-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1px solid var(--gold-dim);
+    color: var(--gold-light);
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+    flex-shrink: 0;
+  }
+  .site-share-btn:hover { background: rgba(201,162,39,0.12); border-color: var(--gold); }
+  .site-share-btn.copied { border-color: #4a8a5c; color: #6fbb84; }
+  .site-share-btn svg { width: 17px; height: 17px; }
     display: flex;
     border: 1px solid var(--gold-dim);
     border-radius: 999px;
@@ -396,6 +412,35 @@
   .order-btn:active { transform: scale(0.98); }
   .order-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
  
+  .card-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .card-actions .order-btn { flex-grow: 1; margin-top: 0; }
+  .share-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    flex-shrink: 0;
+    background: transparent;
+    border: 1px solid var(--gold-dim);
+    border-radius: 4px;
+    color: var(--gold-light);
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .share-btn:hover { background: rgba(201,162,39,0.12); border-color: var(--gold); }
+  .share-btn svg { width: 18px; height: 18px; }
+  .share-btn.copied { border-color: #4a8a5c; color: #6fbb84; }
+ 
+  .card.highlight { animation: highlightPulse 1.8s ease-out; }
+  @keyframes highlightPulse {
+    0% { box-shadow: 0 0 0 3px var(--gold); }
+    100% { box-shadow: 0 0 0 0px transparent; }
+  }
+ 
   /* Empty state for future products */
   .placeholder-card {
     border: 1px dashed var(--line);
@@ -411,7 +456,47 @@
     border-radius: 6px;
   }
  
-  footer {
+  .reviews-section {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px 28px 80px;
+  }
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 26px;
+  }
+  .review-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 26px 24px;
+    position: relative;
+  }
+  .review-card .stars {
+    color: var(--gold);
+    font-size: 0.95rem;
+    margin-bottom: 12px;
+    letter-spacing: 2px;
+  }
+  .review-card .quote {
+    color: var(--cream);
+    font-size: 0.95rem;
+    line-height: 1.85;
+    margin-bottom: 16px;
+  }
+  .review-card .author {
+    color: var(--gold-light);
+    font-size: 0.88rem;
+    font-weight: 600;
+  }
+  .review-card .author .product-ref {
+    color: var(--cream-dim);
+    font-weight: 400;
+    font-size: 0.8rem;
+  }
     position: relative;
     z-index: 1;
     border-top: 1px solid var(--line);
@@ -471,6 +556,9 @@
       <button id="btn-ar" class="active" onclick="setLang('ar')">العربية</button>
       <button id="btn-he" onclick="setLang('he')">עברית</button>
     </div>
+    <button class="site-share-btn" id="site-share-btn" onclick="shareSite(event)" aria-label="share site">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"/><line x1="15.4" y1="6.5" x2="8.6" y2="10.5"/></svg>
+    </button>
   </div>
 </header>
  
@@ -507,6 +595,14 @@
   <svg viewBox="0 0 32 32" fill="white"><path d="M16.004 3C9.377 3 4 8.373 4 15c0 2.34.646 4.53 1.77 6.4L4 29l7.79-1.74A11.94 11.94 0 0 0 16.004 27C22.63 27 28 21.627 28 15S22.63 3 16.004 3zm0 21.8c-1.98 0-3.83-.55-5.41-1.5l-.39-.23-4.62 1.03 1.05-4.5-.25-.4A9.77 9.77 0 0 1 5.2 15c0-5.96 4.85-10.8 10.8-10.8S26.8 9.04 26.8 15 21.96 24.8 16.004 24.8zm5.9-8.1c-.32-.16-1.9-.94-2.2-1.04-.3-.11-.51-.16-.73.16-.21.32-.84 1.04-1.03 1.25-.19.21-.38.24-.7.08-.32-.16-1.35-.5-2.57-1.6-.95-.85-1.59-1.9-1.78-2.22-.18-.32-.02-.49.14-.65.14-.14.32-.37.48-.55.16-.19.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.73-1.76-1-2.42-.26-.63-.53-.54-.73-.55h-.62c-.21 0-.56.08-.85.4-.29.32-1.12 1.1-1.12 2.67 0 1.57 1.15 3.09 1.31 3.3.16.21 2.26 3.45 5.47 4.84.76.33 1.36.53 1.82.67.77.24 1.46.21 2.02.13.62-.09 1.9-.78 2.16-1.53.27-.75.27-1.39.19-1.53-.08-.13-.29-.21-.61-.37z"/></svg>
 </a>
  
+<section class="reviews-section" id="reviews" style="display:none;">
+  <div class="catalog-head">
+    <h2 class="ar-only">آراء عملائنا</h2>
+    <h2 class="he-only">מה הלקוחות שלנו אומרים</h2>
+  </div>
+  <div class="reviews-grid" id="reviews-grid"></div>
+</section>
+ 
 <section class="catalog" id="contact" style="text-align:center; padding-top:20px;">
   <div class="catalog-head">
     <h2 class="ar-only">تواصل معنا</h2>
@@ -523,7 +619,7 @@
  
 <footer>
   <span class="foot-brand">Arkan Incense</span>
-  <div class="ar-only">© 2026 Arkan Incense. جميع الحقوق محفوظة.</div>
+  <div class="ar-only">© 2026 أركان للبخور. جميع الحقوق محفوظة.</div>
   <div class="he-only">© 2026 Arkan Incense. כל הזכויות שמורות.</div>
 </footer>
  
@@ -541,8 +637,18 @@
     name: { ar: "باقة ورد شمعية فاخرة", he: "זר פרחים משעווה יוקרתי" },
     desc: { ar: "باقة ورد مصنوعة يدويًا من الشمع بتصميم أنيق داخل علبة هدايا فاخرة، مثالية للهدايا، المناسبات، وتزيين المنزل. تضيف لمسة راقية تدوم طويلًا.", he: "זר פרחים יוקרתי בעבודת יד משעווה, מעוצב בקופסת מתנה אלגנטית. מתאים לימי הולדת, ימי נישואין, חנוכת בית ומתנה מיוחדת שנשארת לאורך זמן." },
     price: 150
-  }
   ];
+ 
+  // ===== Customer reviews =====
+  // Leave empty until you have real customer feedback — the section stays hidden automatically.
+  // To add a real review, copy this structure and fill in real details:
+  // {
+  //   rating: 5,                                  // 1 to 5
+  //   quote: { ar: "...نص المراجعة...", he: "...טקסט הביקורת..." },
+  //   author: { ar: "اسم العميل", he: "שם הלקוח" },
+  //   productRef: { ar: "باقة ورد شمعية", he: "זר פרחי שעווה" }  // optional — which product they ordered
+  // }
+  const REVIEWS = [];
  
   function renderProducts(lang) {
     const grid = document.getElementById('product-grid');
@@ -552,6 +658,7 @@
       const images = p.images && p.images.length ? p.images : (p.image ? [p.image] : []);
       const card = document.createElement('div');
       card.className = 'card';
+      card.id = 'product-' + p.id;
       const message = encodeURIComponent(
         lang === 'ar'
           ? `مرحبًا، أرغب بطلب المنتج رقم ${productNumber}: ${p.name.ar} — السعر: ${p.price} ${CURRENCY.ar}`
@@ -577,10 +684,15 @@
           <div class="price-row">
             <span class="price">${p.price} <span class="cur">${CURRENCY[lang]}</span></span>
           </div>
-          <a class="order-btn" href="${waLink}" target="_blank" rel="noopener">
-            <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16.004 3C9.377 3 4 8.373 4 15c0 2.34.646 4.53 1.77 6.4L4 29l7.79-1.74A11.94 11.94 0 0 0 16.004 27C22.63 27 28 21.627 28 15S22.63 3 16.004 3zm0 21.8c-1.98 0-3.83-.55-5.41-1.5l-.39-.23-4.62 1.03 1.05-4.5-.25-.4A9.77 9.77 0 0 1 5.2 15c0-5.96 4.85-10.8 10.8-10.8S26.8 9.04 26.8 15 21.96 24.8 16.004 24.8z"/></svg>
-            <span>${lang === 'ar' ? 'اطلب عبر واتساب' : 'הזמנה בוואטסאפ'}</span>
-          </a>
+          <div class="card-actions">
+            <a class="order-btn" href="${waLink}" target="_blank" rel="noopener">
+              <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16.004 3C9.377 3 4 8.373 4 15c0 2.34.646 4.53 1.77 6.4L4 29l7.79-1.74A11.94 11.94 0 0 0 16.004 27C22.63 27 28 21.627 28 15S22.63 3 16.004 3zm0 21.8c-1.98 0-3.83-.55-5.41-1.5l-.39-.23-4.62 1.03 1.05-4.5-.25-.4A9.77 9.77 0 0 1 5.2 15c0-5.96 4.85-10.8 10.8-10.8S26.8 9.04 26.8 15 21.96 24.8 16.004 24.8z"/></svg>
+              <span>${lang === 'ar' ? 'اطلب عبر واتساب' : 'הזמנה בוואטסאפ'}</span>
+            </a>
+            <button class="share-btn" onclick="shareProduct(event, ${pIndex}, '${lang}')" aria-label="share">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"/><line x1="15.4" y1="6.5" x2="8.6" y2="10.5"/></svg>
+            </button>
+          </div>
         </div>
       `;
       card._images = images;
@@ -593,6 +705,57 @@
     ph.className = 'placeholder-card';
     ph.textContent = lang === 'ar' ? 'قريبًا... منتجات جديدة' : 'בקרוב... מוצרים נוספים';
     grid.appendChild(ph);
+  }
+ 
+  function shareSite(evt) {
+    const lang = document.body.className === 'lang-he' ? 'he' : 'ar';
+    const url = window.location.origin + window.location.pathname;
+    const text = lang === 'ar'
+      ? 'اكتشفوا Arkan Incense — شموع وباقات شمعية مصنوعة يدويًا بعناية'
+      : 'גלו את Arkan Incense — נרות וזרי שעווה בעבודת יד';
+ 
+    if (navigator.share) {
+      navigator.share({ title: 'Arkan Incense', text, url }).catch(() => {});
+    } else {
+      navigator.clipboard.writeText(url).then(() => {
+        const btn = evt.currentTarget;
+        btn.classList.add('copied');
+        setTimeout(() => btn.classList.remove('copied'), 1800);
+      });
+    }
+  }
+ 
+  function shareProduct(evt, pIndex, lang) {
+    evt.preventDefault();
+    const p = PRODUCTS[pIndex];
+    const url = window.location.origin + window.location.pathname + '#product-' + p.id;
+    const text = lang === 'ar'
+      ? `${p.name.ar} — ${p.price} ${CURRENCY.ar} | Arkan Incense`
+      : `${p.name.he} — ${p.price} ${CURRENCY.he} | Arkan Incense`;
+ 
+    if (navigator.share) {
+      navigator.share({ title: 'Arkan Incense', text, url }).catch(() => {});
+    } else {
+      navigator.clipboard.writeText(url).then(() => {
+        const btn = evt.currentTarget;
+        btn.classList.add('copied');
+        setTimeout(() => btn.classList.remove('copied'), 1800);
+      });
+    }
+  }
+ 
+  function scrollToHashProduct() {
+    const hash = window.location.hash;
+    if (hash && hash.startsWith('#product-')) {
+      const el = document.querySelector(hash);
+      if (el) {
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          el.classList.add('highlight');
+          setTimeout(() => el.classList.remove('highlight'), 2000);
+        }, 300);
+      }
+    }
   }
  
   function shiftImage(evt, pIndex, dir) {
@@ -652,6 +815,23 @@
     if (e.key === 'ArrowRight') lightboxShift(1);
   });
  
+  function renderReviews(lang) {
+    const section = document.getElementById('reviews');
+    const grid = document.getElementById('reviews-grid');
+    if (!REVIEWS || REVIEWS.length === 0) {
+      section.style.display = 'none';
+      return;
+    }
+    section.style.display = 'block';
+    grid.innerHTML = REVIEWS.map(r => `
+      <div class="review-card">
+        <div class="stars">${'★'.repeat(r.rating || 5)}${'☆'.repeat(5 - (r.rating || 5))}</div>
+        <p class="quote">${r.quote[lang]}</p>
+        <div class="author">${r.author[lang]}${r.productRef ? ` <span class="product-ref">— ${r.productRef[lang]}</span>` : ''}</div>
+      </div>
+    `).join('');
+  }
+ 
   function setLang(lang) {
     document.body.className = 'lang-' + lang;
     document.documentElement.lang = lang;
@@ -661,11 +841,13 @@
     document.getElementById('float-wa').href = `https://wa.me/${WHATSAPP_NUMBER}`;
     document.getElementById('contact-wa-btn').href = `https://wa.me/${WHATSAPP_NUMBER}`;
     renderProducts(lang);
+    renderReviews(lang);
   }
  
   // Init
   const savedLang = 'ar'; // default per brief
   setLang(savedLang);
+  scrollToHashProduct();
 </script>
  
 </body>
